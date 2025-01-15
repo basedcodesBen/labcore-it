@@ -21,6 +21,14 @@
     @include('components.navigation')
 
     <div class="flex flex-col lg:flex-row">
+        <!-- Sidebar -->
+        <div class="w-64 bg-gray-800 text-white">
+            @if (Auth::check())
+                <!-- Conditionally load the sidebar based on the user's role -->
+                @include('components.sidebar.' . Auth::user()->role . '-sidebar')
+            @endif
+        </div>
+        
         <!-- Content Area -->
         <div class="w-full p-6 lg:w-9/12">
             @yield('content')

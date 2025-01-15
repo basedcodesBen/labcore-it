@@ -5,8 +5,8 @@
     </div>
     <ul class="space-y-2">
         <li><a href="{{ route('staff.dashboard') }}" class="block py-2 px-4 hover:bg-gray-700">Dashboard</a></li>
-        <li><a href="{{ route('staff.rooms') }}" class="block py-2 px-4 hover:bg-gray-700">Rooms</a></li>
-        <li><a href="{{ route('staff.inventory') }}" class="block py-2 px-4 hover:bg-gray-700">Inventory</a></li>
-        <li><a href="{{ route('staff.reservations') }}" class="block py-2 px-4 hover:bg-gray-700">Reservations</a></li>
+        {{-- <li><a href="{{ route('staff.rooms') }}" class="block py-2 px-4 hover:bg-gray-700">Rooms</a></li>
+        <li><a href="{{ route('staff.inventory') }}" class="block py-2 px-4 hover:bg-gray-700">Inventory</a></li> --}}
+        <li><a href="{{ route('staff.room-reservations.index') }}" class="block py-2 px-4 hover:bg-gray-700">Reservations</a></li>
     </ul>
 </aside>

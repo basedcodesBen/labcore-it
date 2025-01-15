@@ -9,7 +9,7 @@ class InventoryItem extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'category', 'description', 'quantity'];
+    protected $fillable = ['name', 'category', 'description', 'quantity', 'available'];
 
     // Define the inverse of the polymorphic relationship
     public function reservations()

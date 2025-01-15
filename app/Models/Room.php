@@ -9,7 +9,7 @@ class Room extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'capacity'];
+    protected $fillable = ['name', 'description', 'capacity', 'available'];
 
     // Define the inverse of the polymorphic relationship
     public function reservations()

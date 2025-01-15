@@ -3,6 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\InventoryItemController;
+use App\Http\Controllers\Admin\RoomController;
+use App\Http\Controllers\RoomReservationController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\AttendanceController;
 use Illuminate\Support\Facades\Auth;
@@ -44,6 +49,27 @@ Route::middleware('auth')->group(function () {
     Route::get('/dosen/dashboard', function () {
         return view('pages.dosen.dashboard');
     })->middleware('role:dosen')->name('dosen.dashboard');
+});
+
+
+Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
+    // User CRUD Routes (Resource Controller)
+    Route::resource('users', UserController::class);
+    Route::resource('rooms', RoomController::class);
+    Route::resource('admin/inventory-items', InventoryItemController::class);
+});
+
+Route::prefix('staff')->middleware('auth')->name('staff.')->group(function () {
+    // Staff can view all pending room reservations and approve/reject
+    Route::get('room-reservations', [RoomReservationController::class, 'index'])->name('room-reservations.index');
+    Route::post('room-reservations/{reservation}/approve', [RoomReservationController::class, 'approve'])->name('room-reservations.approve');
+    Route::post('room-reservations/{reservation}/reject', [RoomReservationController::class, 'reject'])->name('room-reservations.reject');
+});
+
+Route::prefix('dosen')->middleware('auth')->name('dosen.')->group(function () {
+    // Dosen can create reservations and view their own
+    Route::get('room-reservations', [RoomReservationController::class, 'indexForDosen'])->name('room-reservations.index');
+    Route::post('room-reservations', [RoomReservationController::class, 'store'])->name('room-reservations.store');
 });
 
 // Profile route (for authenticated users)

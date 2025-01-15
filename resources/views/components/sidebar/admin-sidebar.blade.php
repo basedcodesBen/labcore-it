@@ -5,10 +5,10 @@
     </div>
     <ul class="space-y-2">
         <li><a href="{{ route('admin.dashboard') }}" class="block py-2 px-4 hover:bg-gray-700">Dashboard</a></li>
-        <li><a href="{{ route('admin.users') }}" class="block py-2 px-4 hover:bg-gray-700">Users</a></li>
-        <li><a href="{{ route('admin.rooms') }}" class="block py-2 px-4 hover:bg-gray-700">Rooms</a></li>
-        <li><a href="{{ route('admin.inventory') }}" class="block py-2 px-4 hover:bg-gray-700">Inventory</a></li>
-        <li><a href="{{ route('admin.reservations') }}" class="block py-2 px-4 hover:bg-gray-700">Reservations</a></li>
-        <li><a href="{{ route('admin.attendance') }}" class="block py-2 px-4 hover:bg-gray-700">Attendance</a></li>
+        <li><a href="{{ route('admin.users.index') }}" class="block py-2 px-4 hover:bg-gray-700">Users</a></li>
+        <li><a href="{{ route('admin.rooms.index') }}" class="block py-2 px-4 hover:bg-gray-700">Rooms</a></li>
+        <li><a href="{{ route('admin.inventory-items.index') }}" class="block py-2 px-4 hover:bg-gray-700">Inventory</a></li>
+        {{-- <li><a href="{{ route('admin.reservations') }}" class="block py-2 px-4 hover:bg-gray-700">Reservations</a></li>
+        <li><a href="{{ route('admin.attendance') }}" class="block py-2 px-4 hover:bg-gray-700">Attendance</a></li> --}}
     </ul>
 </aside>
