@@ -12,6 +12,10 @@ class AttendanceController extends Controller
     /**
      * Store attendance for a user.
      */
+    public function index(){
+        $user = auth()->User();
+        return view('attendance.index',compact('user'));
+    }
     public function store(Request $request)
     {
         $request->validate([
