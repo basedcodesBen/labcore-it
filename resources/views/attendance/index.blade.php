@@ -6,7 +6,7 @@
     <h2 class="text-2xl font-bold mb-4">Attendance</h2>
     <div class="space-y-4">
         <!-- Add Attendance Form Here -->
-        <form action="{{ route('staff.attendance.store') }}" method="POST">
+        <form action="{{ $user->role === 'dosen' ? route('dosen.attendance.store') : route('staff.attendance.store')}}" method="POST">
             @csrf
             <div class="mb-4">
                 <label for="user" class="block">User</label>
@@ -22,8 +22,21 @@
             </div>
             <div class="mb-4">
                 <label for="clock_in" class="block">Clock In</label>
-                <input type="Time" name="clock_in" id="clock_in" class="w-full p-2 border border-gray-300 rounded" required>
+                <input type="time" name="clock_in" id="clock_in" class="w-full p-2 border border-gray-300 rounded" required>
             </div>
+
+            <!-- Conditional Input for Dosen -->
+            @if ($user->role === 'dosen')
+                <div class="mb-4">
+                    <label for="room" class="block">Room</label>
+                    <select name="room" id="room" class="w-full p-2 border border-gray-300 rounded" required>
+                        @foreach ($rooms as $room)    
+                            <option value="{{$room->id}}">{{ $room->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            @endif
+
             <button type="submit" class="w-full py-2 bg-blue-600 text-white rounded">Add Attendance</button>
         </form>
     </div>

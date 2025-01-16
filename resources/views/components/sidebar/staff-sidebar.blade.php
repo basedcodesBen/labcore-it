@@ -8,5 +8,6 @@
         {{-- <li><a href="{{ route('staff.rooms') }}" class="block py-2 px-4 hover:bg-gray-700">Rooms</a></li>
         <li><a href="{{ route('staff.inventory') }}" class="block py-2 px-4 hover:bg-gray-700">Inventory</a></li> --}}
         <li><a href="{{ route('staff.room-reservations.index') }}" class="block py-2 px-4 hover:bg-gray-700">Reservations</a></li>
+        <li><a href="{{ route('staff.attendance') }}" class="block py-2 px-4 hover:bg-gray-700">Absensi</a></li>
     </ul>
 </aside>

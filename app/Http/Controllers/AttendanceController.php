@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Attendance;
 use App\Models\User;
+use App\Models\Room;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class AttendanceController extends Controller
 {
@@ -14,25 +16,41 @@ class AttendanceController extends Controller
      */
     public function index(){
         $user = auth()->User();
-        return view('attendance.index',compact('user'));
+        $rooms = Room::all();
+        return view('attendance.index',compact('user','rooms'));
     }
     public function store(Request $request)
     {   
         $request->validate([
             'user' => 'required|exists:users,id', // Ensure user exists
-            'attendance_type' => 'required|in:lecturer,staff', // Type of attendance (lecturer or staff)
+            'attendance_type' => 'required|in:dosen,staff', // Type of attendance (lecturer or staff)
             'clock_in' => 'required|date_format:H:i', // Valid clock-in time
+            'room' => 'required|exists:rooms,id',
+            
         ]);
         $date = Carbon::today('Asia/Jakarta');
-        // Store clock-in time
+
+        $attendance_record = Attendance::where('user_id',$request->user)
+            ->where('date',$date->format('Y-m-d'))
+            ->first();
+        
+        if($attendance_record){
+            $affectedRows = Attendance::where('user_id', $request->user)
+                          ->where('date', $date->format('Y-m-d'))
+                          ->update(['clock_out' => $request->clock_in]);
+
+            return redirect()->route($request->attendance_type.'.dashboard')->with('message','Attendance already marked updated clock out time');
+        }
         $attendance = Attendance::create([
             'user_id' => $request->user,
-            'attendance_type' => $request->type,
+            'attendance_type' => $request->attendance_type,
             'date' => $date->format('Y-m-d'), // Store today's date
             'clock_in' => $request->clock_in,
+            'room' => $request->room,
         ]);
+        
 
-        return redirect()->route('staff.dashboard')->with('message','Attendance marked successfully');
+        return redirect()->route($request->attendance_type.'.dashboard')->with('message','Attendance marked successfully');
     }
 
     /**

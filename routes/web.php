@@ -72,6 +72,8 @@ Route::prefix('dosen')->middleware('auth')->name('dosen.')->group(function () {
     // Dosen can create reservations and view their own
     Route::get('room-reservations', [RoomReservationController::class, 'indexForDosen'])->name('room-reservations.index');
     Route::post('room-reservations', [RoomReservationController::class, 'store'])->name('room-reservations.store');
+    Route::get('attendance',[AttendanceController::class, 'index'])->name('attendance');
+    Route::post('attendance/store',[AttendanceController::class,'store'])->name('attendance.store');
 });
 
 // Profile route (for authenticated users)
