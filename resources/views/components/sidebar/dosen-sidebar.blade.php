@@ -5,7 +5,7 @@
     </div>
     <ul class="space-y-2">
         <li><a href="{{ route('dosen.dashboard') }}" class="block py-2 px-4 hover:bg-gray-700">Dashboard</a></li>
-        {{-- <li><a href="{{ route('dosen.rooms') }}" class="block py-2 px-4 hover:bg-gray-700">Rooms</a></li> --}}
-        <li><a href="{{ route('dosen.room-reservations.index') }}" class="block py-2 px-4 hover:bg-gray-700">Reservations</a></li>
+        <li><a href="{{ route('dosen.room-reservations.index') }}" class="block py-2 px-4 hover:bg-gray-700">Room Reservations</a></li>
+        <li><a href="{{ route('dosen.inventory-reservations.create') }}" class="block py-2 px-4 hover:bg-gray-700">Inventory Reservations</a></li>
     </ul>
 </aside>
