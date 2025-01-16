@@ -17,25 +17,22 @@ class AttendanceController extends Controller
         return view('attendance.index',compact('user'));
     }
     public function store(Request $request)
-    {
+    {   
         $request->validate([
-            'user_id' => 'required|exists:users,id', // Ensure user exists
-            'type' => 'required|in:lecturer,staff', // Type of attendance (lecturer or staff)
+            'user' => 'required|exists:users,id', // Ensure user exists
+            'attendance_type' => 'required|in:lecturer,staff', // Type of attendance (lecturer or staff)
             'clock_in' => 'required|date_format:H:i', // Valid clock-in time
         ]);
-
+        $date = Carbon::today('Asia/Jakarta');
         // Store clock-in time
         $attendance = Attendance::create([
-            'user_id' => $request->user_id,
-            'type' => $request->type,
-            'date' => Carbon::today(), // Store today's date
+            'user_id' => $request->user,
+            'attendance_type' => $request->type,
+            'date' => $date->format('Y-m-d'), // Store today's date
             'clock_in' => $request->clock_in,
         ]);
 
-        return response()->json([
-            'message' => 'Attendance marked successfully',
-            'attendance' => $attendance
-        ]);
+        return redirect()->route('staff.dashboard')->with('message','Attendance marked successfully');
     }
 
     /**

@@ -64,8 +64,8 @@ Route::prefix('staff')->middleware('auth')->name('staff.')->group(function () {
     Route::get('room-reservations', [RoomReservationController::class, 'index'])->name('room-reservations.index');
     Route::post('room-reservations/{reservation}/approve', [RoomReservationController::class, 'approve'])->name('room-reservations.approve');
     Route::post('room-reservations/{reservation}/reject', [RoomReservationController::class, 'reject'])->name('room-reservations.reject');
-    Route::get('attendance',[AttendanceController::class, 'index'])->name('staff.attendance');
-    Route::post('attendance/store',[AttendanceController::class,'store'])->name('staff.attendance.store');
+    Route::get('attendance',[AttendanceController::class, 'index'])->name('attendance');
+    Route::post('attendance/store',[AttendanceController::class,'store'])->name('attendance.store');
 });
 
 Route::prefix('dosen')->middleware('auth')->name('dosen.')->group(function () {

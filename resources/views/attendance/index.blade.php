@@ -11,14 +11,18 @@
             <div class="mb-4">
                 <label for="user" class="block">User</label>
                 <select name="user" id="user" class="w-full p-2 border border-gray-300 rounded" required>
-                    <option value="{{$user->id}}">{{$user -> name}}</option>
+                    <option value="{{ $user->id }}">{{ $user->name }}</option>
                 </select>
             </div>
             <div class="mb-4">
                 <label for="attendance_type" class="block">Attendance Type</label>
                 <select name="attendance_type" id="attendance_type" class="w-full p-2 border border-gray-300 rounded" required>
-                    <option value="{{$user->role}}">{{$user->role}}</option>
+                    <option value="{{ $user->role }}">{{ $user->role }}</option>
                 </select>
+            </div>
+            <div class="mb-4">
+                <label for="clock_in" class="block">Clock In</label>
+                <input type="Time" name="clock_in" id="clock_in" class="w-full p-2 border border-gray-300 rounded" required>
             </div>
             <button type="submit" class="w-full py-2 bg-blue-600 text-white rounded">Add Attendance</button>
         </form>

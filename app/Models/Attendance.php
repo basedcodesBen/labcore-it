@@ -9,7 +9,7 @@ class Attendance extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'type', 'check_in_time', 'check_out_time'];
+    protected $fillable = ['user_id', 'type','date','clock_in', 'clock_out'];
 
     // Relationship with the User
     public function user()

@@ -15,12 +15,12 @@
     @stack('head')
 </head>
 
-<body class="font-sans antialiased">
+<body class="font-sans antialiased flex flex-col min-h-screen">
 
     <!-- Sidebar or Navigation -->
     @include('components.navigation')
 
-    <div class="flex flex-col lg:flex-row">
+    <div class="flex-grow flex flex-col lg:flex-row">
         <!-- Sidebar -->
         <div class="w-64 bg-gray-800 text-white">
             @if (Auth::check())
