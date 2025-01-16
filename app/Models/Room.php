@@ -17,3 +17,4 @@ class Room extends Model
         return $this->morphMany(Reservation::class, 'reservable');
     }
 }
+

@@ -9,9 +9,14 @@ class Reservation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'start_time', 'end_time'];
+    protected $fillable = ['user_id', 'reservable_type', 'reservable_id', 'start_time', 'end_time', 'status'];
 
-    // Polymorphic relationship to either a Room or an InventoryItem
+    protected $casts = [
+        'start_time' => 'datetime',
+        'end_time' => 'datetime',
+    ];
+
+    // Polymorphic relationship to either a Room or other reservable types
     public function reservable()
     {
         return $this->morphTo();
@@ -23,3 +28,4 @@ class Reservation extends Model
         return $this->belongsTo(User::class);
     }
 }
+

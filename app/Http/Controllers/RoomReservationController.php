@@ -16,7 +16,7 @@ class RoomReservationController extends Controller
             ->where('status', 'pending')
             ->get();
 
-        return view('staff.room-reservations.index', compact('reservations'));
+        return view('pages.staff.room-reservations.index', compact('reservations'));
     }
 
     public function store(Request $request)
@@ -60,17 +60,16 @@ class RoomReservationController extends Controller
             return redirect()->route('staff.room-reservations.index')->with('error', 'You are not authorized to approve this reservation.');
         }
 
-        // Check if the room is available
-        if ($reservation->reservable->available) {
-            // Update the reservation status to approved
+        // Check if reservation exists and is pending
+        if ($reservation && $reservation->status === 'pending') {
+            // Mark reservation as approved
             $reservation->status = 'approved';
             $reservation->save();
 
             // Mark the room as unavailable
-            $reservation->reservable->available = false;
-            $reservation->reservable->save();
+            $reservation->reservable->update(['available' => false]);
 
-            return redirect()->route('staff.room-reservations.index')->with('success', 'Reservation approved successfully!');
+            return redirect()->route('staff.room-reservations.index')->with('success', 'Reservation approved successfully.');
         }
 
         return redirect()->route('staff.room-reservations.index')->with('error', 'The room is no longer available.');

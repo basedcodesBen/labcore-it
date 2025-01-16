@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\InventoryItemController;
 use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\RoomReservationController;
+use App\Http\Controllers\DosenRoomReservationController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\AttendanceController;
 use Illuminate\Support\Facades\Auth;
@@ -67,9 +68,8 @@ Route::prefix('staff')->middleware('auth')->name('staff.')->group(function () {
 });
 
 Route::prefix('dosen')->middleware('auth')->name('dosen.')->group(function () {
-    // Dosen can create reservations and view their own
-    Route::get('room-reservations', [RoomReservationController::class, 'indexForDosen'])->name('room-reservations.index');
-    Route::post('room-reservations', [RoomReservationController::class, 'store'])->name('room-reservations.store');
+    Route::get('room-reservations', [DosenRoomReservationController::class, 'index'])->name('room-reservations.index');
+    Route::post('room-reservations', [DosenRoomReservationController::class, 'store'])->name('room-reservations.store');
 });
 
 // Profile route (for authenticated users)
