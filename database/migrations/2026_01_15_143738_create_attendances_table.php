@@ -19,6 +19,7 @@ return new class extends Migration
             $table->time('clock_in'); // Clock-in time
             $table->time('clock_out')->nullable(); // Clock-out time (nullable if not clocked out yet)
             $table->string('room')->nullable();//room nullable cause only for dosen
+            $table->integer('id_matkul')->nullable();
             $table->timestamps();
         });
     }

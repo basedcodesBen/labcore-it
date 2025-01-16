@@ -35,6 +35,14 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="mb-4">
+                    <label for="matkuliah" class="block">Matakuliah</label>
+                    <select name="matakuliah" id="matakuliah" class="w-full p-2 border border-gray-300 rounded" required>
+                        @foreach ($matakuliah as $matkul)    
+                            <option value="{{$matkul->id}}">{{ $matkul->nama }}</option>
+                        @endforeach
+                    </select>
+                </div>
             @endif
 
             <button type="submit" class="w-full py-2 bg-blue-600 text-white rounded">Add Attendance</button>
